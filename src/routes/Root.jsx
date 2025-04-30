@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 import ErrorPage from "../pages/Error/ErrorPage";
+import Category from "../pages/Category/Category";
 
 export const router =createBrowserRouter(
     [
@@ -20,6 +21,10 @@ export const router =createBrowserRouter(
                 },
                 {
                     path:'/career',Component:Career
+                },
+                {
+                    path:'/category/:id',
+                    Component:Category
                 }
             ]
         }

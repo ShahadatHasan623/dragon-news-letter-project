@@ -1,5 +1,5 @@
 import React from 'react';
-import headerImg from '../../assets/logo.png'
+import headerImg from '../assets/logo.png'
 import { format } from 'date-fns';
 
 const Header = () => {
