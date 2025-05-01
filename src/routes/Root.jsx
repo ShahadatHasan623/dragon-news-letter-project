@@ -5,6 +5,9 @@ import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 import ErrorPage from "../pages/Error/ErrorPage";
 import Category from "../pages/Category/Category";
+import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 export const router =createBrowserRouter(
     [
@@ -29,6 +32,21 @@ export const router =createBrowserRouter(
                     loader:()=>fetch("../news.json")
                 }
             ]
-        }
+        },
+        {
+            path:'/auth',
+            Component:AuthLayout,
+            children:[
+                {
+                    path:'/auth/login',
+                    Component:Login
+                },
+                {
+                    path:'/auth/register',
+                    Component:Register
+                }
+            ]
+            
+        },
     ]
 )

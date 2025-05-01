@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBookmark, FaShareAlt } from "react-icons/fa";
+import { FaBookmark, FaShareAlt, FaStar } from "react-icons/fa";
 
 const NewsCard = ({ newsCard }) => {
   const { title, image_url,author,details,rating,total_view } = newsCard;
@@ -49,10 +49,10 @@ const NewsCard = ({ newsCard }) => {
 
       <div className="flex items-center justify-between p-4  mt-4">
         <div className="flex items-center space-x-1 text-orange-500">
-          {/* {[...Array(5)].map((_, i) => (
-            <Star key={i} size={16} fill="currentColor" />
-          ))} */}
-          <span className="text-gray-700 text-sm ml-2">{rating.badge}</span>
+          {Array.from({length:rating.number}).map((_,i)=>(
+          <FaStar key={i} size={20}></FaStar>
+          ))}
+          <span className="text-gray-700 text-sm ml-2">{rating.number}</span>
         </div>
         <p className="text-sm text-gray-600">👁️ {total_view }</p>
       </div>
