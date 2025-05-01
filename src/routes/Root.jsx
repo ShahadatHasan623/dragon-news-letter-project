@@ -23,8 +23,10 @@ export const router =createBrowserRouter(
                     path:'/career',Component:Career
                 },
                 {
+                    hydrateFallbackElement:<p>news data loading...</p>,
                     path:'/category/:id',
-                    Component:Category
+                    Component:Category,
+                    loader:()=>fetch("../news.json")
                 }
             ]
         }
