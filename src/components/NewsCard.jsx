@@ -1,8 +1,9 @@
 import React from "react";
 import { FaBookmark, FaShareAlt, FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ newsCard }) => {
-  const { title, image_url,author,details,rating,total_view } = newsCard;
+  const { title, image_url,author,details,rating,total_view,id } = newsCard;
   return (
     <div className="max-w-full mx-auto bg-white shadow-lg rounded-xl overflow-hidden ">
       <div className="flex items-center justify-between p-4 bg-base-200">
@@ -37,9 +38,9 @@ const NewsCard = ({ newsCard }) => {
             {
                 details.slice(0,200)
             }...
-            <span className="text-primary font-semibold cursor-pointer  hover:underline">
+            <Link to={`/news-details/${id}`} className="text-primary font-semibold cursor-pointer  hover:underline">
             Read More
-            </span>
+            </Link>
             </>
           ):(
             details
