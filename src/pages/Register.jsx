@@ -1,21 +1,40 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
 
 
 
 const Register = () => {
-  const { crateUser,setUser }=use(AuthContext)
+  const { crateUser,setUser,updateUser }=use(AuthContext)
+  const [errorName,setErrorName]=useState('')
+  const navigate =useNavigate()
 
   const handleRegister =e=>{
       e.preventDefault()
+      const name =e.target.name.value
+      const photourl =e.target.photourl.value
       const email =e.target.email.value;
       const password =e.target.password.value;
-
+      if(name.length <5){
+        setErrorName("Name should be more then 5 character")
+        return;
+      }
+      else{
+        setErrorName('')
+      }
       crateUser(email,password)
       .then(result=>{
         const user =result.user;
-        setUser(user)
+        updateUser({displayName:name,photoURL:photourl})
+        .then(()=>{
+          setUser({...user,displayName:name,photoURL:photourl});
+          navigate('/')
+        })
+        .catch(error=>{
+          console.log(error)
+          setUser(user)
+        })
+        
       })
       .catch(error=>{
         console.log(error.message)
@@ -28,9 +47,10 @@ const Register = () => {
           <h1 className="text-xl font-bold text-center">Register your account</h1>
           <form onSubmit={handleRegister} className="fieldset">
             <label className="label font-bold">Your Name</label>
-            <input type="text" className="input" placeholder="Enter Your Name" />
+            <input name="name" type="text" className="input" placeholder="Enter Your Name" />
+            {errorName && <p className="text-red-500">{errorName}</p>}
             <label className="label font-bold">Photo Url</label>
-            <input type="text" className="input" placeholder="Photo Url" />
+            <input type="text" name="photourl" className="input" placeholder="Photo Url" />
             <label className="label font-bold">Email</label>
             <input type="email" className="input" name="email" placeholder="Email" />
             <label className="label font-bold">Password</label>
