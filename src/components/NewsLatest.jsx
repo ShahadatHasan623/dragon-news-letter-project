@@ -1,7 +1,12 @@
-import React from "react";
+import React, { use } from "react";
 import Marquee from "react-fast-marquee";
 
+const newsLatest=fetch("/news.json")
+.then(res=>res.json())
+
 const NewsLatest = () => {
+  const data =use(newsLatest)
+  
   return (
     <div>
       <div className="flex items-center gap-2 bg-base-200 p-3">
@@ -9,39 +14,9 @@ const NewsLatest = () => {
           Latest
         </p>
         <Marquee className="flex gap-5 items-center" pauseOnHover={true} speed={60}>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          <p className="font-bold">
-            Match Highlights: Germany vs Spain — as it happened ! Match
-            Highlights: Germany vs Spain as || Bangladesh 
-          </p>
-          
+         {
+          data.map(signleNews=><p className="flex items-center gap-3 font-bold">{signleNews.title}</p>)
+         }
         </Marquee>
       </div>
     </div>

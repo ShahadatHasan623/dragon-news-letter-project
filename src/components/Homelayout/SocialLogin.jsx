@@ -1,11 +1,31 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const SocialLogin = () => {
+const {googleLogin,githubLogin}=use(AuthContext)
+  const handleGoogleLogin=()=>{
+    googleLogin()
+    .then(result=>{
+      console.log(result.user)
+    })
+    .catch(error=>{
+      console.log(error.message)
+    })
+  }
+  const handleGithubLogin =()=>{
+    githubLogin()
+    .then(result=>{
+      console.log(result.user)
+    })
+    .catch(error=>{
+      console.log(error.message)
+    })
+  }
   return (
     <div>
       <h1 className="font-bold">Login With</h1>
       <div className="mt-5 space-y-2">
-        <button className="btn  w-full bg-white text-black border-[#e5e5e5]">
+        <button onClick={handleGoogleLogin} className="btn  w-full bg-white text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="20"
@@ -35,7 +55,7 @@ const SocialLogin = () => {
           </svg>
           Login with Google
         </button>
-        <button className="btn w-full bg-black text-white border-black">
+        <button onClick={handleGithubLogin} className="btn w-full bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="20"
